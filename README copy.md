@@ -1,5 +1,6 @@
 "How I got this app to work"
 
+REMEMBER, when making a new repository on github make sure the first branch says 'master' not 'main'
 npx create-react-app my-first-react-app
 
 remove all files except node_modules, package.json, and package-lock.json
