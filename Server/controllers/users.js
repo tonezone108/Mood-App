@@ -3,14 +3,14 @@ const pool = require('../sql/connection')
 const { handleSQLError } = require('../sql/error')
 
 const getAllUsers = (req, res) => {
-  pool.query("SELECT * FROM login_app_users", (err, rows) => {
+  pool.query("SELECT * FROM users", (err, rows) => {
     if (err) return handleSQLError(res, err)
     return res.json(rows);
   })
 }
 
 const getUserById = (req, res) => {
-  let sql = "SELECT * FROM login_app_users WHERE id = ?"
+  let sql = "SELECT * FROM users WHERE id = ?"
   sql = mysql.format(sql, [ req.params.id ])
 
   pool.query(sql, (err, rows) => {
@@ -21,7 +21,7 @@ const getUserById = (req, res) => {
 
 // const createUser = (req, res) => {
 //   const { firstName, lastName } = req.body
-//   let sql = "INSERT INTO login_app_users (first_name, last_name) VALUES (?, ?)"
+//   let sql = "INSERT INTO  (first_name, last_name) VALUES (?, ?)"
 //   sql = mysql.format(sql, [ firstName, lastName ])
 
 //   pool.query(sql, (err, results) => {
@@ -42,7 +42,7 @@ const getUserById = (req, res) => {
 // }
 
 const deleteUserByFirstName = (req, res) => {
-  let sql = "DELETE FROM login_app_users WHERE username = ?"
+  let sql = "DELETE FROM users WHERE username = ?"
   sql = mysql.format(sql, [ req.params.username ])
 
   pool.query(sql, (err, results) => {
