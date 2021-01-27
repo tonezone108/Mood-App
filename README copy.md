@@ -34,7 +34,7 @@ GAMEPLAN:
 2: Migrate contents from login-app to mood-app, test functionality : DONE
 3: Make gameplan : DONE
 4A: Make a Repl.it for front end javascript that will take in user data regarding mood, and return it as a object : DONE, may need changes later, needs modfiication in actual component.
-4B: Update server files with new routers and countrolers for passing user mood data, test in postman when database is up : IN PROGRESS
+4B: Update server files with new routers and countrolers for passing user mood data, test in postman when database is up : DONE for now. Issues with geting entries by date, may have to work around it.
 4C: Update database to hold new tables to hold the data apropriately. OR make new database to hold app data, and all future apps : DONE
 5: Integrate Repl.it javascript into src app and make the necessary components, actions, and user interface. Test it to pass new data, and update local state.
 6: Add front end functionality to pull user database info on login

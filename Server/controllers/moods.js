@@ -29,13 +29,23 @@ const getAllMoods = (req, res) => {
     })
   }
 
+  const getAllMoodsByDate = (req, res) => {
+    let sql = "SELECT * FROM moods WHERE date = ?"
+    sql = mysql.format(sql, [ req.params.date ])
+  
+    pool.query(sql, (err, rows) => {
+      if (err) return handleSQLError(res, err)
+      return res.json(rows);
+    })
+  }
+
   
 
 
  const createMood = (req, res) => {
-   const { firstName, lastName } = req.body
-   let sql = "INSERT INTO moods  (username, mood,date) VALUES (?, ?, ?)"
-   sql = mysql.format(sql, [ firstName, lastName ])
+   const { username, mood, date, description } = req.body
+   let sql = "INSERT INTO moods (username,mood,date,description) VALUES (?, ?, ?, ?)"
+   sql = mysql.format(sql, [ username, mood, date, description ])
 
    pool.query(sql, (err, results) => {
      if (err) return handleSQLError(res, err)
@@ -56,5 +66,7 @@ const getAllMoods = (req, res) => {
   module.exports = {
     getAllMoods,
     getMoodById,
-    getAllMoodsByUsername
+    getAllMoodsByUsername,
+    getAllMoodsByDate,
+    createMood
   }

@@ -1,7 +1,7 @@
 const express = require("express");
 const usersRouter = require("./routers/users");
 const authRouter = require("./routers/auth");
-
+const moodRouter = require("./routers/moods")
 const { logger } = require("./middleware");
 const app = express();
 const port = process.env.PORT || 80;
@@ -25,6 +25,7 @@ app.use(express.json());
 app.use(logger);
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
+app.use("/mood", moodRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to our server!");

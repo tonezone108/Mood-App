@@ -4,15 +4,15 @@ const { authenticate } = require("../middleware");
 const router = express.Router();
 
 
-router.get("/", authenticate, usersController.getAllMoods);
+router.get("/", authenticate, moodsController.getAllMoods);
 
-router.get("/:id", authenticate, usersController.getMoodById);
+router.get("/:id", authenticate, moodsController.getMoodById);
 
-router.get("/username", authenticate, usersController.getAllMoodsByUsername);
+router.get("/username/:username", authenticate, moodsController.getAllMoodsByUsername);
 
-// router.get("/date", authenticate, usersController.getAllMoodsByDate);
+router.get("/date/:date", authenticate, moodsController.getAllMoodsByDate);
 
-router.post("/create", authenticate, usersController.createMood);
+router.post("/create", authenticate, moodsController.createMood);
 
 // router.put("/date", authenticate, usersController.updateMoodByDate);
 // router.put("/user", authenticate, usersController.updateMoodByUser);
