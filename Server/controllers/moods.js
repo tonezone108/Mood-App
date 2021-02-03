@@ -43,9 +43,9 @@ const getAllMoods = (req, res) => {
 
 
  const createMood = (req, res) => {
-   const { username, mood, date, description } = req.body
-   let sql = "INSERT INTO moods (username,mood,date,description) VALUES (?, ?, ?, ?)"
-   sql = mysql.format(sql, [ username, mood, date, description ])
+   const { username, mood, date, time, description } = req.body
+   let sql = "INSERT INTO moods (username,mood,date,time,description) VALUES (?, ?, ?, ?, ?)"
+   sql = mysql.format(sql, [ username, mood, date, time, description ])
 
    pool.query(sql, (err, results) => {
      if (err) return handleSQLError(res, err)
@@ -53,10 +53,10 @@ const getAllMoods = (req, res) => {
    })
  }
 
- const updateMoodByDateAndUsername = (req, res) => {
-  const {  username, mood, date, description } = req.body
-  let sql = "UPDATE moods SET mood = ?, description =? WHERE date = ? AND username = ?"
-  sql = mysql.format(sql, [mood, description, date, username ])
+ const updateMoodByDateAndUsernameAndTime = (req, res) => {
+  const {  username, mood, time, date, description } = req.body
+  let sql = "UPDATE moods SET mood = ?, description =? WHERE time =? AND date = ? AND username = ?"
+  sql = mysql.format(sql, [mood, description, time, date, username ])
   //console.log(sql);
   pool.query(sql, (err, results) => {
     if (err) return handleSQLError(res, err)
@@ -65,10 +65,10 @@ const getAllMoods = (req, res) => {
 }
 
 
-const deleteMoodByDateAndUsername = (req, res) => {
-  const {  username, date } = req.body
-  let sql = "DELETE FROM moods WHERE date = ? AND username = ?"
-  sql = mysql.format(sql, [date, username ])
+const deleteMoodByDateAndUsernameAndTime = (req, res) => {
+  const {  username, date, time } = req.body
+  let sql = "DELETE FROM moods WHERE date = ? AND username = ? AND time = ?"
+  sql = mysql.format(sql, [date, username, time ])
 
   pool.query(sql, (err, results) => {
     if (err) return handleSQLError(res, err)
@@ -102,7 +102,7 @@ const deleteMoodByDateAndUsername = (req, res) => {
     getMoodById,
     getAllMoodsByUsername,
     getAllMoodsByDate,
-    updateMoodByDateAndUsername,
-    deleteMoodByDateAndUsername,
+    updateMoodByDateAndUsernameAndTime,
+    deleteMoodByDateAndUsernameAndTime,
     createMood
   }

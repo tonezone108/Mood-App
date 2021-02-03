@@ -14,11 +14,11 @@ router.get("/date/:date", authenticate, moodsController.getAllMoodsByDate);
 
 router.post("/create", authenticate, moodsController.createMood);
 
-router.put("/update", authenticate, moodsController.updateMoodByDateAndUsername);
+router.put("/update", authenticate, moodsController.updateMoodByDateAndUsernameAndTime);
 // router.put("/user", authenticate, usersController.updateMoodByUser);
 
 router.delete(
-   "/delete", authenticate, moodsController.deleteMoodByDateAndUsername
+   "/delete", authenticate, moodsController.deleteMoodByDateAndUsernameAndTime
  );
 
 module.exports = router;
